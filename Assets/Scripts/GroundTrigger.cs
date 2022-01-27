@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GroundTrigger : MonoBehaviour
 {
+    private static int i = 0;
     SpawnGrounds spawnGrounds;
 
     // Start is called before the first frame update
@@ -13,14 +14,19 @@ public class GroundTrigger : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-    }
+    //void Update()
+    //{
+    //}
 
     private void OnTriggerExit(Collider other)
     {
-        spawnGrounds.RandomGroundSpawner();
-        Destroy(gameObject, 2);
-        spawnGrounds.cloneList.RemoveAt(0);
+        if (i < spawnGrounds.groundCount)
+        {
+            spawnGrounds.RandomGroundSpawner();
+            Destroy(gameObject, 2);
+            spawnGrounds.cloneList.Dequeue();
+             i+= 1;
+        }
+        
     }
 }

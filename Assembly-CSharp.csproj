@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\GamePlay.cs" />
     <Compile Include="Assets\Scripts\CameraWork.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\PassTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

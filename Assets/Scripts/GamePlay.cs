@@ -10,58 +10,27 @@ public class GamePlay : MonoBehaviour
     private Vector2 firstPressPos;
     private Vector2 secondPressPos;
     private Vector2 currentSwipe;
-
-    GameObject target;
-    Transform tetrisObj;
+    private GameObject target;
+    private Transform tetrisObj;
 
     SpawnGrounds spawnGrounds;
 
     // Start is called before the first frame update
     void Start()
     {
+        
         spawnGrounds = FindObjectOfType<SpawnGrounds>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        target = FindClosestObj(spawnGrounds.cloneList, player);
+        target = spawnGrounds.tetrisList.Peek();
         tetrisObj = target.transform.Find("Tetris");
-
-        if (tetrisObj != null)
-        {
-            TetrisMovement(tetrisObj);
-        }        
+        TetrisMovement(tetrisObj);    
     }
 
-    GameObject FindClosestObj(List<GameObject> clones, GameObject player)
-    {
-        GameObject bestTarget = null;
-
-        float closestDistanceSqr = Mathf.Infinity;
-
-        Vector3 currentPosition = player.transform.position;
-
-        foreach (GameObject potentialTarget in clones)
-        {
-            if (potentialTarget.name != "Ground Flat(Clone)")
-            {
-                Vector3 directionToTarget = potentialTarget.transform.position - currentPosition;
-                float dSqrToTarget = directionToTarget.sqrMagnitude;
-
-                if (potentialTarget.transform.position.z > currentPosition.z)
-                {
-                    if (dSqrToTarget < closestDistanceSqr)
-                    {
-                        closestDistanceSqr = dSqrToTarget;
-                        bestTarget = potentialTarget;
-                    }
-                }
-            }          
-        }
-
-        return bestTarget;
-    }
 
     void TetrisMovement(Transform obj)
     {
@@ -87,6 +56,7 @@ public class GamePlay : MonoBehaviour
             if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
             {
                 rb.velocity = -transform.up * dropSpeed;
+                spawnGrounds.tetrisList.Dequeue();
             }
 
             // just rotate
@@ -96,6 +66,13 @@ public class GamePlay : MonoBehaviour
                 obj.RotateAround(tetrisObj.position, Vector3.right, 90f);                
             }
         }
+    }
+
+    public void OnPlayerPassed()
+    {
+        var rb = tetrisObj.GetComponent<Rigidbody>(); 
+        rb.velocity = -transform.up * dropSpeed;
+        Debug.Log("onPlayerPased");
     }
 
     

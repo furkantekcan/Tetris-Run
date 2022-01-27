@@ -8,9 +8,12 @@ public class SpawnGrounds : MonoBehaviour
     public GameObject ground1;
     public GameObject ground2;
     public GameObject ground3;
+    public int groundCount = 15;
+    public Queue<GameObject> cloneList = new Queue<GameObject>();
+    public Queue<GameObject> tetrisList = new Queue<GameObject>();
 
     private List<GameObject> groundList = new List<GameObject>();
-    public List<GameObject> cloneList = new List<GameObject>();
+
     Vector3 spawnPoint;
     GameObject temp;
 
@@ -43,14 +46,15 @@ public class SpawnGrounds : MonoBehaviour
     public void GroundSpawner()
     {
         temp = Instantiate(groundList[0], spawnPoint, Quaternion.identity);
-        cloneList.Add(temp);
+        cloneList.Enqueue(temp);
         spawnPoint = temp.transform.GetChild(0).transform.position;
     }
 
     public void RandomGroundSpawner()
     {
         temp = Instantiate(groundList[Random.Range(1,4)], spawnPoint, Quaternion.identity);
-        cloneList.Add(temp);
+        cloneList.Enqueue(temp);
+        tetrisList.Enqueue(temp);
         spawnPoint = temp.transform.GetChild(0).transform.position;
     }
 

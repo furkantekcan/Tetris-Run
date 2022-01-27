@@ -6,6 +6,7 @@ public class CameraWork : MonoBehaviour
 {
     public Transform player;
     Vector3 offset;
+    Vector3 currentPlayerPosition;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,11 @@ public class CameraWork : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.position + offset;
+        if (player != null)
+        {
+            currentPlayerPosition = player.position;
+        }
+
+        transform.position = currentPlayerPosition + offset;
     }
 }

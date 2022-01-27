@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
-    public Rigidbody rb;
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = gameObject.GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
@@ -18,9 +18,20 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(rb.position + movement);
     }
 
-    // Update is called once per frame
-    void Update()
+    //Update is called once per frame
+    //void Update()
+    //{
+
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        GameOver();
     }
+
+    void GameOver()
+    {
+        Destroy(this.gameObject);
+    }
+
 }
