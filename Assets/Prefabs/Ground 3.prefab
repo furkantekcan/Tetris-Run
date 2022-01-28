@@ -67,6 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3136467967166942022}
   - component: {fileID: 990564113930931471}
+  - component: {fileID: 8960283121948000367}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -99,8 +100,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 0.88155353}
+  m_Center: {x: 0, y: 0, z: -0.059223235}
+--- !u!114 &8960283121948000367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4827073455026521466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 241b0024fe0a8904088f8ff348203866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7805885075858002453
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +592,7 @@ Transform:
   - {fileID: 7805885076332102866}
   - {fileID: 7805885077925200773}
   m_Father: {fileID: 7805885076354601102}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7805885076015143180
 GameObject:
@@ -1114,7 +1127,7 @@ Transform:
   - {fileID: 7805885076298292802}
   - {fileID: 7805885075858002452}
   m_Father: {fileID: 7805885076354601102}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5187873887997621732
 Rigidbody:
@@ -1243,8 +1256,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7805885077552962789}
-  - {fileID: 7805885076012966014}
   - {fileID: 7805885076317545364}
+  - {fileID: 7805885076012966014}
   - {fileID: 3136467967166942022}
   - {fileID: 1939923777521166497}
   m_Father: {fileID: 0}

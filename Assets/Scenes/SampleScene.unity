@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23087442053f47f4cbd4c69e58161a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 8
 --- !u!54 &994655977
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -486,7 +486,7 @@ MonoBehaviour:
   ground1: {fileID: 6339714658276799421, guid: c40939b25ef6a4549ab77d077bd0d0f4, type: 3}
   ground2: {fileID: 8100787124596073211, guid: aef0eda2e64636c45b50457c2322da29, type: 3}
   ground3: {fileID: 7805885076354601100, guid: 01de8950077ccc2488acae31bea6ff23, type: 3}
-  groundCount: 15
+  maxGroundCount: 10
 --- !u!1 &1595187768
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class GamePlay : MonoBehaviour
 
     private Vector2 firstPressPos;
     private Vector2 secondPressPos;
-    private Vector2 currentSwipe;
+    private float currentSwipe;
     private GameObject target;
     private Transform tetrisObj;
 
@@ -18,16 +18,18 @@ public class GamePlay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         spawnGrounds = FindObjectOfType<SpawnGrounds>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (spawnGrounds.tetrisList.Count == 0)
+        {
+            return;
+        }
         target = spawnGrounds.tetrisList.Peek();
-        tetrisObj = target.transform.Find("Tetris");
+        tetrisObj = target.transform.GetChild(1);
         TetrisMovement(tetrisObj);    
     }
 
@@ -38,31 +40,23 @@ public class GamePlay : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            //save began touch 2d point
-            firstPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+            firstPressPos = Input.mousePosition * 10;
         }
         if (Input.GetMouseButtonUp(0))
         {
-            //save ended touch 2d point
-            secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-
-            //create vector from the two points
-            currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
-
-            //normalize the 2d vector
-            currentSwipe.Normalize();
-
-            //swipe down
-            if (currentSwipe.y < 0 && currentSwipe.x > -0.5f && currentSwipe.x < 0.5f)
+            secondPressPos = Input.mousePosition * 10;
+            currentSwipe = secondPressPos.y - firstPressPos.y;
+            if (currentSwipe < 0)
             {
+                Debug.Log(secondPressPos.y - firstPressPos.y);
                 rb.velocity = -transform.up * dropSpeed;
-                spawnGrounds.tetrisList.Dequeue();
+                
             }
 
-            // just rotate
 
-            if (currentSwipe.y == 0 && currentSwipe.x == 0 && currentSwipe.x == 0)
+            if (-10 <= currentSwipe && currentSwipe <= 10 && rb.velocity.y == 0)
             {
+                Debug.Log(currentSwipe);
                 obj.RotateAround(tetrisObj.position, Vector3.right, 90f);                
             }
         }
@@ -72,7 +66,6 @@ public class GamePlay : MonoBehaviour
     {
         var rb = tetrisObj.GetComponent<Rigidbody>(); 
         rb.velocity = -transform.up * dropSpeed;
-        Debug.Log("onPlayerPased");
     }
 
     

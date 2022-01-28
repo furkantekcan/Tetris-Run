@@ -27,7 +27,5 @@ public class PassTrigger : MonoBehaviour
         {
             gameplay.OnPlayerPassed();
         }
-        
-        Debug.Log(other.gameObject.name);
     }
 }
