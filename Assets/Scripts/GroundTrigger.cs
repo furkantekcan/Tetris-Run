@@ -17,7 +17,7 @@ public class GroundTrigger : MonoBehaviour
     //{
     //}
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (spawnGrounds.totalGroundCount < spawnGrounds.maxGroundCount)
         {
@@ -30,10 +30,4 @@ public class GroundTrigger : MonoBehaviour
             Debug.LogWarning(gameObject.name);
         }
     }
-
-    //private void Win()
-    //{
-    //    Debug.Log("Win");
-    //    Time.timeScale = 0;
-    //}
 }

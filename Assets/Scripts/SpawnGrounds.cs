@@ -9,8 +9,12 @@ public class SpawnGrounds : MonoBehaviour
     public GameObject ground2;
     public GameObject ground3;
     public int maxGroundCount = 10;
+
+    [HideInInspector]
     public int totalGroundCount = 0;
+    public GameObject lastObj = null;
     
+    [HideInInspector]
     public Queue<GameObject> cloneList = new Queue<GameObject>();
     public Queue<GameObject> tetrisList = new Queue<GameObject>();
 
@@ -36,10 +40,10 @@ public class SpawnGrounds : MonoBehaviour
     }
 
     // Update is called once per frame
-    //void Update()
-    //{
-
-    //}
+    void Update()
+    {
+        
+    }
 
     public void GroundSpawner()
     {
@@ -56,6 +60,14 @@ public class SpawnGrounds : MonoBehaviour
         tetrisList.Enqueue(temp);
         spawnPoint = temp.transform.GetChild(0).transform.position;
         totalGroundCount += 1;
+
+
+        if (totalGroundCount == maxGroundCount)
+        {
+            var lastItem = temp.transform.GetChild(2);
+            lastItem.GetComponent<BoxCollider>().enabled = true;
+            Debug.Log(lastItem.name);
+        }
     }
 
 }

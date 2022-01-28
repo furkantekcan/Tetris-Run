@@ -26,12 +26,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameOver();
+        if(collision.gameObject.name == "Finish")
+        {
+            Win();
+        }
+
+        else
+        {
+            GameOver();
+            Debug.Log("Game Over !!");
+        }
+        
     }
 
     void GameOver()
     {
         Destroy(this.gameObject);
+    }
+
+    void Win()
+    {
+        Time.timeScale = 0;
+        Debug.Log("Win!!!!");
     }
 
 }

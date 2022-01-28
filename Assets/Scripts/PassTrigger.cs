@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PassTrigger : MonoBehaviour
 {
-    public delegate void playerPassedDelegate();
-    public event playerPassedDelegate playerPassedEvent;
 
     private GamePlay gameplay;
     //// Start is called before the first frame update
@@ -26,6 +24,10 @@ public class PassTrigger : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             gameplay.OnPlayerPassed();
+        }
+        else if (other.gameObject.name != "Player")
+        {
+            gameObject.SetActive(false);
         }
     }
 }

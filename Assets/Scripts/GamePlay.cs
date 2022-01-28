@@ -46,7 +46,7 @@ public class GamePlay : MonoBehaviour
         {
             secondPressPos = Input.mousePosition * 10;
             currentSwipe = secondPressPos.y - firstPressPos.y;
-            if (currentSwipe < 0)
+            if (currentSwipe < -10)
             {
                 Debug.Log(secondPressPos.y - firstPressPos.y);
                 rb.velocity = -transform.up * dropSpeed;
