@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraWork : MonoBehaviour
 {
@@ -22,5 +23,21 @@ public class CameraWork : MonoBehaviour
         }
 
         transform.position = currentPlayerPosition + offset;
+
+    }
+
+    private void ShakeCamera()
+    {
+        gameObject.transform.DOShakePosition(2).SetUpdate(true);
+    }
+
+    private void OnEnable()
+    {
+        PlayerMovement.onGameOver += ShakeCamera;
+    }
+
+    private void OnDisable()
+    {
+        PlayerMovement.onGameOver -= ShakeCamera;
     }
 }

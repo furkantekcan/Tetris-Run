@@ -40,10 +40,10 @@ public class SpawnGrounds : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
         
-    }
+    //}
 
     public void GroundSpawner()
     {
@@ -70,4 +70,19 @@ public class SpawnGrounds : MonoBehaviour
         }
     }
 
+    private void DequeueTetrisList()
+    {
+        tetrisList.Dequeue();
+    }
+
+
+    private void OnEnable()
+    {
+        CollisionDetection.onCollisionOccurs += DequeueTetrisList;
+    }
+
+    private void OnDisable()
+    {
+        CollisionDetection.onCollisionOccurs -= DequeueTetrisList;
+    }
 }

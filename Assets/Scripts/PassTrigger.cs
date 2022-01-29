@@ -25,7 +25,7 @@ public class PassTrigger : MonoBehaviour
         {
             gameplay.OnPlayerPassed();
         }
-        else if (other.gameObject.name != "Player")
+        else
         {
             gameObject.SetActive(false);
         }

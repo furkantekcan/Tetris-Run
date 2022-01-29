@@ -4,22 +4,14 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
-    SpawnGrounds spawnGrounds;
-    // Start is called before the first frame update
-    void Start()
-    {
-        spawnGrounds = FindObjectOfType<SpawnGrounds>();
-    }
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //}
+    public delegate void CollisionAction();
+    public static event CollisionAction onCollisionOccurs;
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Collision happend");
-        spawnGrounds.tetrisList.Dequeue();
+        if (onCollisionOccurs != null)
+        {
+            onCollisionOccurs();
+        }
     }
 }

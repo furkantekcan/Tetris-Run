@@ -12,12 +12,8 @@ public class GroundTrigger : MonoBehaviour
         spawnGrounds = FindObjectOfType<SpawnGrounds>();
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //}
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (spawnGrounds.totalGroundCount < spawnGrounds.maxGroundCount)
         {
@@ -31,3 +27,4 @@ public class GroundTrigger : MonoBehaviour
         }
     }
 }
+
